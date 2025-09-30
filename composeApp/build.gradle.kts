@@ -26,10 +26,13 @@ kotlin {
 
     sourceSets {
         androidMain.dependencies {
+            // compose
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
         }
+
         commonMain.dependencies {
+            // compose
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -39,7 +42,9 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel.compose)
             implementation(libs.androidx.lifecycle.runtime.compose)
         }
+
         commonTest.dependencies {
+            // testing
             implementation(libs.kotlin.test)
         }
     }
@@ -56,16 +61,19 @@ android {
         versionCode = 1
         versionName = "1.0.0"
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -73,5 +81,6 @@ android {
 }
 
 dependencies {
+    // testing
     debugImplementation(compose.uiTooling)
 }
