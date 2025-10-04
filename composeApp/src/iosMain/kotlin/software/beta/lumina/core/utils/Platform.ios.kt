@@ -1,4 +1,4 @@
-package software.beta.lumina
+package software.beta.lumina.core.utils
 
 import platform.UIKit.UIDevice
 
