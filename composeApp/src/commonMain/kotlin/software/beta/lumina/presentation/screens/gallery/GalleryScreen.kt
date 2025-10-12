@@ -1,6 +1,7 @@
 package software.beta.lumina.presentation.screens.gallery
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,23 +20,28 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
+import software.beta.lumina.core.common.ext.collectAsEffect
 import software.beta.lumina.core.ui.components.ecosystem.Screen
 import software.beta.lumina.core.ui.theme.LuminaTheme
+import software.beta.lumina.presentation.navigation.args.PlaygroundArgs
 import software.beta.lumina.presentation.screens.gallery.state.GalleryPreviewProvider
 import software.beta.lumina.presentation.screens.gallery.state.GalleryUiState
 
 @Composable
 fun GalleryScreen(
     modifier: Modifier,
-    navigateToPlayground: () -> Unit,
+    navigateToPlayground: (args: PlaygroundArgs) -> Unit,
 ) {
     Screen<GalleryViewModel, GalleryUiState>(
         modifier = modifier,
         viewModel = viewModel { GalleryViewModel() },
         content = { viewModel, state ->
+            viewModel.navigateToPlayground.collectAsEffect(navigateToPlayground)
+
             Content(
                 modifier = Modifier.fillMaxSize(),
                 state = state,
+                onShaderClick = viewModel::onShaderClick,
             )
         },
     )
@@ -45,6 +51,7 @@ fun GalleryScreen(
 private fun Content(
     modifier: Modifier,
     state: GalleryUiState,
+    onShaderClick: (shader: String) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier,
@@ -65,6 +72,7 @@ private fun Content(
                             .fillMaxWidth()
                             .height(172.dp),
                         title = data,
+                        onClick = onShaderClick,
                     )
                 },
             )
@@ -76,11 +84,13 @@ private fun Content(
 private fun Item(
     modifier: Modifier,
     title: String,
+    onClick: (shader: String) -> Unit,
 ) {
     Box(
         modifier = modifier
             .clip(shape = RoundedCornerShape(24.dp))
-            .background(color = MaterialTheme.colorScheme.surfaceContainer),
+            .background(color = MaterialTheme.colorScheme.surfaceContainer)
+            .clickable { onClick(title) },
         contentAlignment = Alignment.Center,
         content = {
             Text(
@@ -111,6 +121,7 @@ private fun ContentPreview(
                     Content(
                         modifier = Modifier.fillMaxSize(),
                         state = state,
+                        onShaderClick = {},
                     )
                 },
             )

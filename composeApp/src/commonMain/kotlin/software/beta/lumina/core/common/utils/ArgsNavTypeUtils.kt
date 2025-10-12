@@ -6,7 +6,7 @@ import androidx.savedstate.read
 import androidx.savedstate.write
 import kotlinx.serialization.json.Json
 
-inline fun <reified T : Any> createArgNavType(
+inline fun <reified T : Any?> createArgNavType(
     isNullableAllowed: Boolean,
 ) = object : NavType<T>(isNullableAllowed) {
 

@@ -4,9 +4,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import software.beta.lumina.core.ui.theme.LuminaTheme
-import software.beta.lumina.presentation.screens.gallery.GalleryScreen
+import software.beta.lumina.presentation.navigation.LuminaNavigation
 
 @Composable
 @Preview
@@ -21,16 +22,12 @@ fun LuminaApp(
             Surface(
                 modifier = Modifier.fillMaxSize(),
                 content = {
-                    GalleryScreen(
-                        modifier = Modifier.fillMaxSize(),
-                        navigateToPlayground = {},
-                    )
+                    val navController = rememberNavController()
 
-//                    ClickMeScreen(
-//                        modifier = Modifier
-//                            .fillMaxSize()
-//                            .safeContentPadding(),
-//                    )
+                    LuminaNavigation(
+                        modifier = Modifier.fillMaxSize(),
+                        navController = navController,
+                    )
                 },
             )
         },
