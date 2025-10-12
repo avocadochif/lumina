@@ -41,6 +41,9 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
             implementation(libs.androidx.lifecycle.runtime.compose)
+
+            // kotlin
+            implementation(libs.kotlinx.collections.immutable)
         }
 
         commonTest.dependencies {

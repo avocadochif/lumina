@@ -1,4 +1,4 @@
-package software.beta.lumina.core.utils
+package software.beta.lumina.core.common
 
 interface Platform {
     val name: String

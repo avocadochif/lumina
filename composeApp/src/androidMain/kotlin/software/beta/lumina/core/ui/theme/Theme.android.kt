@@ -32,6 +32,6 @@ actual fun LuminaTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        content = content
+        content = content,
     )
 }

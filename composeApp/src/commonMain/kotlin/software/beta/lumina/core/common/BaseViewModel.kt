@@ -1,4 +1,4 @@
-package software.beta.lumina.core.ui
+package software.beta.lumina.core.common
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

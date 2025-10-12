@@ -18,9 +18,9 @@ import lumina.composeapp.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
+import software.beta.lumina.core.common.getPlatform
 import software.beta.lumina.core.ui.components.ecosystem.Screen
 import software.beta.lumina.core.ui.theme.LuminaTheme
-import software.beta.lumina.core.utils.getPlatform
 import software.beta.lumina.presentation.screens.clickme.state.ClickMePreviewProvider
 import software.beta.lumina.presentation.screens.clickme.state.ClickMeUiState
 

@@ -7,7 +7,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import software.beta.lumina.core.ui.BaseViewModel
+import software.beta.lumina.core.common.BaseViewModel
 
 @Composable
 inline fun <reified VM, reified S> Screen(
