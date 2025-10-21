@@ -1,7 +1,7 @@
-package software.beta.lumina.presentation.navigation
+package software.beta.lumina.navigation.screens
 
 import kotlinx.serialization.Serializable
-import software.beta.lumina.presentation.navigation.args.PlaygroundArgs
+import software.beta.lumina.navigation.args.PlaygroundArgs
 
 @Serializable
 sealed class Screens {

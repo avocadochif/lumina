@@ -23,4 +23,3 @@ fun <T> Flow<T>.collectAsEffect(action: suspend (T) -> Unit) {
 fun <T> NavigationFlow(): MutableSharedFlow<T> {
     return MutableSharedFlow(extraBufferCapacity = 1)
 }
-

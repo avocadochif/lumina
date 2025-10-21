@@ -14,18 +14,21 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
-import software.beta.lumina.core.ui.components.ecosystem.Screen
+import software.beta.lumina.core.ui.components.ecosystem.screen.Screen
 import software.beta.lumina.core.ui.theme.LuminaTheme
-import software.beta.lumina.presentation.screens.playground.state.PlaygroundPreviewProvider
+import software.beta.lumina.navigation.args.PlaygroundArgs
+import software.beta.lumina.presentation.screens.playground.preview.PlaygroundPreviewProvider
 import software.beta.lumina.presentation.screens.playground.state.PlaygroundUiState
 
 @Composable
 fun PlaygroundScreen(
     modifier: Modifier,
+    args: PlaygroundArgs,
 ) {
     Screen<PlaygroundViewModel, PlaygroundUiState>(
         modifier = modifier,
         viewModel = viewModel { PlaygroundViewModel() },
+        onCreate = { viewModel -> viewModel.onCreate(args) },
         content = { viewModel, state ->
             Content(
                 modifier = Modifier.fillMaxSize(),
@@ -43,38 +46,35 @@ private fun Content(
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center,
-        content = {
-            Text(
-                text = state.shader,
-                modifier = Modifier.fillMaxWidth(),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                style = MaterialTheme.typography.titleLarge,
-                textAlign = TextAlign.Center,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis,
-            )
-        },
-    )
+    ) {
+        Text(
+            text = state.shader,
+            modifier = Modifier.fillMaxWidth(),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.titleLarge,
+            textAlign = TextAlign.Center,
+            maxLines = 3,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
 }
 
 @Composable
 @Preview
 private fun ContentPreview(
-    @PreviewParameter(PlaygroundPreviewProvider ::class) state: PlaygroundUiState,
+    @PreviewParameter(PlaygroundPreviewProvider::class) state: PlaygroundUiState,
 ) {
     LuminaTheme(
         darkTheme = false,
         dynamicColor = false,
-        content = {
-            Surface(
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Content(
                 modifier = Modifier.fillMaxSize(),
-                content = {
-                    Content(
-                        modifier = Modifier.fillMaxSize(),
-                        state = state,
-                    )
-                },
+                state = state,
             )
-        },
-    )
+        }
+    }
 }

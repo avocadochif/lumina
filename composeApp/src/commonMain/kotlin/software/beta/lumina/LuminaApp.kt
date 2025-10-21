@@ -1,4 +1,4 @@
-package software.beta.lumina.presentation
+package software.beta.lumina
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import software.beta.lumina.core.ui.theme.LuminaTheme
-import software.beta.lumina.presentation.navigation.LuminaNavigation
+import software.beta.lumina.navigation.LuminaNavigation
 
 @Composable
 @Preview
@@ -18,19 +18,17 @@ fun LuminaApp(
     LuminaTheme(
         darkTheme = darkTheme,
         dynamicColor = dynamicColor,
-        content = {
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                content = {
-                    val navController = rememberNavController()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            val navController = rememberNavController()
 
-                    LuminaNavigation(
-                        modifier = Modifier.fillMaxSize(),
-                        navController = navController,
-                    )
-                },
+            LuminaNavigation(
+                modifier = Modifier.fillMaxSize(),
+                navController = navController,
             )
-        },
-    )
+        }
+    }
 
 }

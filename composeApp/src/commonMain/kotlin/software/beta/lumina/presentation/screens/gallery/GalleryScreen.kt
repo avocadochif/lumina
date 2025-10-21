@@ -21,10 +21,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 import software.beta.lumina.core.common.ext.collectAsEffect
-import software.beta.lumina.core.ui.components.ecosystem.Screen
+import software.beta.lumina.core.ui.components.ecosystem.screen.Screen
 import software.beta.lumina.core.ui.theme.LuminaTheme
-import software.beta.lumina.presentation.navigation.args.PlaygroundArgs
-import software.beta.lumina.presentation.screens.gallery.state.GalleryPreviewProvider
+import software.beta.lumina.navigation.args.PlaygroundArgs
+import software.beta.lumina.presentation.screens.gallery.preview.GalleryPreviewProvider
 import software.beta.lumina.presentation.screens.gallery.state.GalleryUiState
 
 @Composable
@@ -63,21 +63,19 @@ private fun Content(
             bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding() + 24.dp,
         ),
         verticalArrangement = Arrangement.spacedBy(24.dp),
-        content = {
-            items(
-                items = state.shaders,
-                itemContent = { data ->
-                    Item(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(172.dp),
-                        title = data,
-                        onClick = onShaderClick,
-                    )
-                },
+    ) {
+        items(
+            items = state.shaders,
+        ) { item ->
+            Item(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(172.dp),
+                title = item,
+                onClick = onShaderClick,
             )
-        },
-    )
+        }
+    }
 }
 
 @Composable
@@ -92,18 +90,17 @@ private fun Item(
             .background(color = MaterialTheme.colorScheme.surfaceContainer)
             .clickable { onClick(title) },
         contentAlignment = Alignment.Center,
-        content = {
-            Text(
-                text = title,
-                modifier = Modifier.fillMaxWidth(),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                style = MaterialTheme.typography.titleLarge,
-                textAlign = TextAlign.Center,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis,
-            )
-        },
-    )
+    ) {
+        Text(
+            text = title,
+            modifier = Modifier.fillMaxWidth(),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.titleLarge,
+            textAlign = TextAlign.Center,
+            maxLines = 3,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
 }
 
 @Composable
@@ -114,17 +111,15 @@ private fun ContentPreview(
     LuminaTheme(
         darkTheme = false,
         dynamicColor = false,
-        content = {
-            Surface(
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Content(
                 modifier = Modifier.fillMaxSize(),
-                content = {
-                    Content(
-                        modifier = Modifier.fillMaxSize(),
-                        state = state,
-                        onShaderClick = {},
-                    )
-                },
+                state = state,
+                onShaderClick = {},
             )
-        },
-    )
+        }
+    }
 }
